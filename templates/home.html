@@ -1,0 +1,12 @@
+{% extends "index.html" %} {% block content%}
+
+<div>
+  <h1>Real Site</h1>
+  <video width="320" height="240" controls autoplay>
+    <source src={{ url_for("static", filename='mountain.mp4') }}
+    type="video/mp4" >
+  </video>
+
+  <img src="{{url_for('video_feed')}}" />
+</div>
+{% endblock %}
