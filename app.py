@@ -9,7 +9,6 @@ os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'
 from flask import Flask, redirect, url_for, render_template, Response
 from flask_dance.contrib.google import make_google_blueprint, google
 
-vs = cv2.VideoCapture(0)
 lock = threading.Lock()
 
 
@@ -28,7 +27,8 @@ def index():
     return render_template('login.html')
 
 def generate():
-    global vs, lock
+    vs = cv2.VideoCapture(0)
+    global lock
     while True:
         with lock:
             ret, frame = vs.read()
