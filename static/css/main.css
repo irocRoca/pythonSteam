@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.paper {
+  height: 300px;
+  padding: 20px;
+  box-shadow: 2px 4px 7px #888484;
+  text-align: center;
+}
+
+.logo {
+  height: 75px;
+  margin-bottom: 15px;
+}
+
+.title {
+  padding: 10px;
+  margin: 10px;
+}
+
+.button_wrap {
+  margin: 25px 0;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: white;
+}
+
+.video_contain {
+  width: 400px;
+  height: 400px;
+}
+
+.video {
+  height: 100%;
+}

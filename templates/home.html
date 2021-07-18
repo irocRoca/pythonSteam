@@ -1,12 +1,14 @@
 {% extends "index.html" %} {% block content%}
-
-<div>
-  <h1>Real Site</h1>
-  <video width="320" height="240" controls autoplay>
-    <source src={{ url_for("static", filename='mountain.mp4') }}
-    type="video/mp4" >
-  </video>
-
+<div class="container">
+  <h4>Hello there {{name}}</h4>
+  <div class="video_contain">
+    <video controls autoplay class="video">
+      <source
+        src="{{ url_for('static', filename='windmill.mp4') }}"
+        type="video/mp4"
+      />
+    </video>
+  </div>
   <img src="http://0880f0cfbfe2.ngrok.io/video_feed" />
 </div>
 {% endblock %}

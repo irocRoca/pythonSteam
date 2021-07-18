@@ -9,8 +9,6 @@ os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'
 from flask import Flask, redirect, url_for, render_template, Response
 from flask_dance.contrib.google import make_google_blueprint, google
 
-lock = threading.Lock()
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
@@ -47,15 +45,15 @@ def video_feed():
 def home():
     return render_template('home.html')
 
-@app.route('/login/google')
+@app.route('/login')
 def login():
     if not google.authorized:
         return redirect(url_for("google.login"))
     resp = google.get("/oauth2/v2/userinfo")
     assert resp.ok, resp.text
-    email = resp.json()['email']
+    name = resp.json()['name']
 
-    return redirect(url_for('home'))
+    return render_template('home.html', name=name)
 
 
 if __name__ == "__main__":
