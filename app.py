@@ -1,6 +1,5 @@
 import os
 import cv2
-import threading
 
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
@@ -26,14 +25,13 @@ def index():
 
 def generate():
     vs = cv2.VideoCapture(0)
-    global lock
     while True:
-        with lock:
-            ret, frame = vs.read()
-            (flag, encodedImage) = cv2.imencode('.jpg', frame)
 
-            if not flag:
-                continue
+        ret, frame = vs.read()
+        (flag, encodedImage) = cv2.imencode('.jpg', frame)
+
+        if not flag:
+            continue
         yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
 			bytearray(encodedImage) + b'\r\n')
 
@@ -53,7 +51,7 @@ def login():
     assert resp.ok, resp.text
     name = resp.json()['name']
 
-    return render_template('home.html', name=name)
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":

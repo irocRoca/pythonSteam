@@ -1,5 +1,5 @@
 {% extends "index.html" %} {% block content%}
-<div class="container">
+<div class="container" style="flex-direction: column">
   <h4>Hello there {{name}}</h4>
   <div class="video_contain">
     <video controls autoplay class="video">
@@ -9,6 +9,6 @@
       />
     </video>
   </div>
-  <img src="http://0880f0cfbfe2.ngrok.io/video_feed" />
+  <img src="{{url_for('video_feed')}}" />
 </div>
 {% endblock %}

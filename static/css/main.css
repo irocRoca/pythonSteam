@@ -36,10 +36,9 @@
 }
 
 .video_contain {
-  width: 400px;
-  height: 400px;
+  width: 450px;
 }
 
 .video {
-  height: 100%;
+  width: 100%;
 }
