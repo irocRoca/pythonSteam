@@ -43,7 +43,7 @@ def video_feed():
 def home():
     return render_template('home.html')
 
-@app.route('/login')
+@app.route('/login/google')
 def login():
     if not google.authorized:
         return redirect(url_for("google.login"))
