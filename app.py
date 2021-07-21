@@ -15,8 +15,13 @@ app.register_blueprint(google_bp, url_prefix="/login")
 
 
 @app.route('/')
-def index():
-    return render_template('base.html')
+def home():
+    if not google.authorized:
+        return redirect(url_for("google.login"))
+    resp = google.get("/oauth2/v1/userinfo")
+    assert resp.ok, resp.text
+    name = resp.json()["name"]
+    return render_template('home.html', name=name)
 
 def generate():
     vs = cv2.VideoCapture(0)
@@ -33,15 +38,6 @@ def generate():
 @app.route('/video_feed')
 def video_feed():
     return Response(generate(), mimetype = "multipart/x-mixed-replace; boundary=frame")
-
-@app.route('/home')
-def home():
-    if not google.authorized:
-        return redirect(url_for("google.login"))
-    resp = google.get("/oauth2/v1/userinfo")
-    assert resp.ok, resp.text
-    name = resp.json()["name"]
-    return render_template('home.html', name=name)
 
 
 if __name__ == "__main__":
