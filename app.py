@@ -1,14 +1,14 @@
 import os
 import cv2
 from flask import Flask, redirect, url_for, Response, render_template
-from flask_dance.contrib.google import make_google_blueprint, google
+from flask_dance.contrib.github import make_github_blueprint, github
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "supersekrit")
-app.config["GOOGLE_OAUTH_CLIENT_ID"] = os.environ.get("GOOGLE_OAUTH_CLIENT_ID")
-app.config["GOOGLE_OAUTH_CLIENT_SECRET"] = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET")
-google_bp = make_google_blueprint(scope=["profile", "email"])
-app.register_blueprint(google_bp, url_prefix="/login")
+app.config["GITHUB_OAUTH_CLIENT_ID"] = os.environ.get("GITHUB_OAUTH_CLIENT_ID")
+app.config["GITHUB_OAUTH_CLIENT_SECRET"] = os.environ.get("GITHUB_OAUTH_CLIENT_SECRET")
+github_bp = make_github_blueprint()
+app.register_blueprint(github_bp, url_prefix="/login")
 
 @app.route("/")
 def index():
@@ -16,11 +16,11 @@ def index():
 
 @app.route("/home")
 def login():
-    if not google.authorized:
-        return redirect(url_for("google.login"))
-    resp = google.get("/oauth2/v1/userinfo")
-    assert resp.ok, resp.text
-    return render_template('home.html', name=resp.json()["name"])
+    if not github.authorized:
+        return redirect(url_for("github.login"))
+    resp = github.get("/user")
+    assert resp.ok
+    return render_template('home.html', login=resp.json()["login"])
 
 @app.route('/video_feed')
 def video_feed():
