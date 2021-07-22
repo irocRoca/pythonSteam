@@ -1,0 +1,17 @@
+{% extends "index.html" %} {% block content%}
+
+<div class="container">
+  <div class="video_contain">
+    <h4 class="subtitle">Static Feed</h4>
+    <video controls autoplay class="video">
+      <source
+        src="{{ url_for('static', filename='windmill.mp4') }}"
+        type="video/mp4"
+      />
+    </video>
+  </div>
+  <a class="btn btn-secondary" href="{{url_for('index')}}" role="button"
+    >Go Back</a
+  >
+</div>
+{% endblock %}

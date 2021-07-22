@@ -13,8 +13,18 @@
     </div>
     <div class="video_contain">
       <h4 class="subtitle">Streaming Feed</h4>
-      <img src="{{url_for('video_feed')}}" style="width: 450px" />
+      <video>
+        <source
+          src="https://af7a4c34a935.ngrok.io/video_feed"
+          type="video/ogg;codecs=theora"
+        />
+      </video>
+      <img src="http://af7a4c34a935.ngrok.io/video_feed" style="width: 450px" />
     </div>
   </div>
+
+  <a class="btn btn-secondary" href="{{url_for('static_feed')}}" role="button"
+    >Static Feed</a
+  >
 </div>
 {% endblock %}
