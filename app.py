@@ -7,10 +7,7 @@ valid = False
 
 @app.route('/')
 def index():
-    if valid:
-        return render_template('home.html')
-    else:
-        return render_template('base.html')
+    return render_template('base.html')
 
 
 @app.route('/submit', methods=['POST'])
