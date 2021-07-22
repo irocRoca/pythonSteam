@@ -1,14 +1,20 @@
 {% extends "index.html" %} {% block content%}
 <div class="container" style="flex-direction: column">
-  <h4>Hello there {{name}}</h4>
-  <div class="video_contain">
-    <video controls autoplay class="video">
-      <source
-        src="{{ url_for('static', filename='windmill.mp4') }}"
-        type="video/mp4"
-      />
-    </video>
+  <div class="center">
+    <h4>Hello there {{name}}</h4>
+    <div class="video_contain">
+      <h4 class="subtitle">Static Feed</h4>
+      <video controls autoplay class="video">
+        <source
+          src="{{ url_for('static', filename='windmill.mp4') }}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+    <div class="video_contain">
+      <h4 class="subtitle">Streaming Feed</h4>
+      <img src="{{url_for('video_feed')}}" style="width: 450px" />
+    </div>
   </div>
-  <img src="{{url_for('video_feed')}}" />
 </div>
 {% endblock %}
