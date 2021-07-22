@@ -24,6 +24,12 @@ def submit():
         else:
             return render_template('base.html', message='wrong or empty password')
 
+@app.route('/home')
+def home():
+    if valid:
+        return render_template('home.html')
+    else:
+        return redirect(url_for('index'))
 
 @app.route('/static_feed')
 def static_feed():
@@ -36,7 +42,7 @@ def static_feed():
 @app.route('/live_feed')
 def live_feed():
     if valid:
-        return render_template('live_feed.html')
+        return render_template('stream.html')
     else:
         return redirect(url_for('index'))
 

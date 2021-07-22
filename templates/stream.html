@@ -2,13 +2,8 @@
 
 <div class="container">
   <div class="video_contain" style="text-align: center">
-    <h4 class="subtitle">Static Feed</h4>
-    <video controls autoplay class="video">
-      <source
-        src="{{ url_for('static', filename='windmill.mp4') }}"
-        type="video/mp4"
-      />
-    </video>
+    <h4 class="subtitle">Live Feed</h4>
+    <img src="https://247c2ae7ad32.ngrok.io/video_feed" style="width: 450px" />
     <a
       class="btn btn-secondary"
       style="margin: 15px 0"
@@ -18,4 +13,5 @@
     >
   </div>
 </div>
+
 {% endblock %}

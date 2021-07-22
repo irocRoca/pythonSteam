@@ -1,3 +1,7 @@
+body {
+  background: #f7f7f7;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -8,6 +12,21 @@
 .paper {
   height: 300px;
   padding: 20px;
+  box-shadow: 2px 4px 7px #888484;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.epaper {
+  padding: 30px;
+  width: 320px;
+  box-shadow: 2px 4px 7px #888484;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.spaper {
+  padding: 40px;
   box-shadow: 2px 4px 7px #888484;
   text-align: center;
   background: #f9f9f9;
@@ -41,14 +60,27 @@
 }
 
 .video_contain {
-  width: 450px;
+  width: 500px;
   margin: 2rem;
+  box-shadow: 2px 4px 7px #888484;
+  padding: 10px;
 }
 
 .video {
   width: 100%;
+  padding: 10px;
 }
 
 .subtitle {
   padding: 10px;
+}
+
+.linkGit {
+  color: black;
+  padding: 10px;
+}
+
+.github {
+  color: #34add4;
+  text-decoration: none;
 }

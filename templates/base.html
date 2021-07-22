@@ -1,19 +1,28 @@
 {% extends "index.html" %} {% block content%}
 
 <div class="container">
-  <div class="paper">
+  <div class="epaper">
     <img
       class="logo"
       src="{{url_for('static', filename='video-player.svg')}}"
     />
-    <h2 class="title">Welcome to Video Stream</h2>
+    <h2 class="title">Login</h2>
     <form action="/submit" method="POST">
       {% if message %}
       <p class="message">{{ message }}</p>
       {% endif %}
-      <input placeholder="Password" type="password" name="password" />
+      <div class="form-floating">
+        <input
+          name="password"
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
       <div class="button_wrap">
-        <button type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
       </div>
     </form>
   </div>

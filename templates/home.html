@@ -1,31 +1,33 @@
 {% extends "index.html" %} {% block content%}
 <div class="container" style="flex-direction: column">
-  <div class="center">
-    <h4>Hello there {{login}}</h4>
-    <!-- <div id="static" class="video_contain">
-      <h4 class="subtitle">Static Feed</h4>
-      <video controls autoplay class="video">
-        <source
-          src="{{ url_for('static', filename='windmill.mp4') }}"
-          type="video/mp4"
-        />
-      </video>
-    </div> -->
-    <div id="video" class="video_contain">
-      <h4 class="subtitle">Streaming Feed</h4>
-      <img
-        src="https://13745d77c853.ngrok.io/video_feed"
-        style="width: 450px"
-      />
+  <div class="center spaper">
+    <div><h4 style="margin: 25px 0">Choice where to go next</h4></div>
+    <a
+      id="switch"
+      class="btn btn-primary"
+      href="{{url_for('live_feed')}}"
+      role="button"
+      style="margin: 15px 5px"
+      >Live Stream</a
+    >
+
+    <a
+      id="switch"
+      class="btn btn-primary"
+      href="{{url_for('static_feed')}}"
+      role="button"
+      style="margin: 15px 5px"
+      >Static Feed</a
+    >
+    <div class="linkGit">
+      Source for code
+      <a
+        href="https://github.com/irocRoca/pythonSteam"
+        target="_blank"
+        class="github"
+        >Github</a
+      >
     </div>
   </div>
-
-  <a
-    id="switch"
-    class="btn btn-secondary"
-    href="{{url_for('static_feed')}}"
-    role="button"
-    >Static Feed</a
-  >
+  {% endblock %}
 </div>
-{% endblock %}
