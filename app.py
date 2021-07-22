@@ -1,65 +1,44 @@
-import os
-# setting the environment variables for local testing / not used on deployment
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'
-
-from flask import Flask, redirect, url_for, render_template
-from flask_dance.contrib.google import make_google_blueprint, google
+from flask import Flask, redirect, url_for, render_template, request
 
 app = Flask(__name__)
 
-# setting up the environment variables
-os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = os.environ.get('OAUTHLIB_RELAX_TOKEN_SCOPE')
-app.config['SECRET_KEY'] = 'mysecret'
-app.config['GOOGLE_OAUTH_CLIENT_ID'] = os.environ.get('CLIENT_ID')
-app.config['GOOGLE_OAUTH_CLIENT_SECRET'] = os.environ.get('CLIENT_SECRET')
-
-# setting up the google blueprint & registring it
-blueprint = make_google_blueprint(reprompt_consent=True, scope=['profile', 'email'])
-app.register_blueprint(blueprint, url_prefix='/login')
-
+PASS = '123456'
+valid = False
 
 @app.route('/')
 def index():
-    if google.authorized:
-        resp = google.get('/oauth2/v3/userinfo')
-        assert resp.ok, resp.text
-        name = resp.json()['name']
-        return render_template('home.html', name=name)
+    if valid:
+        return render_template('home.html')
     else:
         return render_template('base.html')
 
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    if request.method == 'POST':
+        password = request.form['password']
+        if password == PASS:
+            global valid 
+            valid = True
+            return render_template('home.html')
+        else:
+            return render_template('base.html', message='wrong or empty password')
+
+
 @app.route('/static_feed')
 def static_feed():
-    if google.authorized:
-        resp = google.get('/oauth2/v3/userinfo')
-        assert resp.ok, resp.text
-        name = resp.json()['name']
-        return render_template('static.html', name=name)
+    if valid:
+        return render_template('static.html')
     else:
         return redirect(url_for('index'))
 
 
 @app.route('/live_feed')
 def live_feed():
-    if google.authorized:
-        resp = google.get('/oauth2/v3/userinfo')
-        assert resp.ok, resp.text
-        name = resp.json()['name']
-        return render_template('live_feed.html', name=name)
+    if valid:
+        return render_template('live_feed.html')
     else:
         return redirect(url_for('index'))
-
-@app.route('/login/google')
-def login():
-    if not google.authorized:
-        return render_template(url_for('google.login'))
-    resp = google.get('/oauth2/v3/userinfo')
-    assert resp.ok, resp.text
-    name = resp.json()['name']
-
-    return redirect('home.html', name=name)
 
 
 if __name__ == '__main__':

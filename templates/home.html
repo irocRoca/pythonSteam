@@ -2,7 +2,7 @@
 <div class="container" style="flex-direction: column">
   <div class="center">
     <h4>Hello there {{login}}</h4>
-    <div class="video_contain">
+    <!-- <div id="static" class="video_contain">
       <h4 class="subtitle">Static Feed</h4>
       <video controls autoplay class="video">
         <source
@@ -10,20 +10,18 @@
           type="video/mp4"
         />
       </video>
-    </div>
-    <div class="video_contain">
+    </div> -->
+    <div id="video" class="video_contain">
       <h4 class="subtitle">Streaming Feed</h4>
-      <video>
-        <source
-          src="https://af7a4c34a935.ngrok.io/video_feed"
-          type="video/ogg;codecs=theora"
-        />
-      </video>
       <img src="http://af7a4c34a935.ngrok.io/video_feed" style="width: 450px" />
     </div>
   </div>
 
-  <a class="btn btn-secondary" href="{{url_for('static_feed')}}" role="button"
+  <a
+    id="switch"
+    class="btn btn-secondary"
+    href="{{url_for('static_feed')}}"
+    role="button"
     >Static Feed</a
   >
 </div>
