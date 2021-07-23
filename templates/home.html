@@ -2,23 +2,16 @@
 <div class="container" style="flex-direction: column">
   <div class="center spaper">
     <div><h4 style="margin: 25px 0">Choice where to go next</h4></div>
-    <a
-      id="switch"
-      class="btn btn-primary"
-      href="{{url_for('live_feed')}}"
-      role="button"
-      style="margin: 15px 5px"
-      >Live Stream</a
-    >
-
-    <a
-      id="switch"
-      class="btn btn-primary"
-      href="{{url_for('static_feed')}}"
-      role="button"
-      style="margin: 15px 5px"
-      >Static Feed</a
-    >
+    <form action="/live_feed" method="POST">
+      <button class="btn btn-primary" type="submit" style="margin: 15px 5px">
+        Live Stream
+      </button>
+    </form>
+    <form action="/static_feed" method="POST">
+      <button class="btn btn-primary" type="submit" style="margin: 15px 5px">
+        Static Feed
+      </button>
+    </form>
     <div class="linkGit">
       Source for code
       <a

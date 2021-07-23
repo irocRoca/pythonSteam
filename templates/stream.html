@@ -4,13 +4,11 @@
   <div class="video_contain" style="text-align: center">
     <h4 class="subtitle">Live Feed</h4>
     <img src="https://247c2ae7ad32.ngrok.io/video_feed" style="width: 450px" />
-    <a
-      class="btn btn-secondary"
-      style="margin: 15px 0"
-      href="{{url_for('home')}}"
-      role="button"
-      >Go Back</a
-    >
+    <form method="POST" action="/home">
+      <button class="btn btn-secondary" style="margin: 15px 0" type="submit">
+        Go Back
+      </button>
+    </form>
   </div>
 </div>
 

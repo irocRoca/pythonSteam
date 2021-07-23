@@ -2,8 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request
 
 app = Flask(__name__)
 
-PASS = '123456'
-valid = False
+PASS = 'cnt123'
 
 @app.route('/')
 def index():
@@ -15,30 +14,28 @@ def submit():
     if request.method == 'POST':
         password = request.form['password']
         if password == PASS:
-            global valid 
-            valid = True
             return render_template('home.html')
         else:
-            return render_template('base.html', message='wrong or empty password')
+            return render_template('base.html', message='Inncorrect Password')
 
-@app.route('/home')
+@app.route('/home', methods=['POST', 'GET'])
 def home():
-    if valid:
+    if request.method == 'POST':
         return render_template('home.html')
     else:
         return redirect(url_for('index'))
 
-@app.route('/static_feed')
+@app.route('/static_feed', methods=['POST', 'GET'])
 def static_feed():
-    if valid:
+    if request.method == 'POST':
         return render_template('static.html')
     else:
         return redirect(url_for('index'))
 
 
-@app.route('/live_feed')
+@app.route('/live_feed',methods=['POST', "GET"])
 def live_feed():
-    if valid:
+    if request.method == 'POST':
         return render_template('stream.html')
     else:
         return redirect(url_for('index'))

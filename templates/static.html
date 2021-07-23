@@ -9,13 +9,11 @@
         type="video/mp4"
       />
     </video>
-    <a
-      class="btn btn-secondary"
-      style="margin: 15px 0"
-      href="{{url_for('home')}}"
-      role="button"
-      >Go Back</a
-    >
+    <form method="POST" action="/home">
+      <button class="btn btn-secondary" style="margin: 15px 0" type="submit">
+        Go Back
+      </button>
+    </form>
   </div>
 </div>
 {% endblock %}
